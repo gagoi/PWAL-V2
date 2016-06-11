@@ -7,8 +7,8 @@ public class Window extends JFrame{
 	
 	private Screen screen;
 
-	public Window(String title, int width, int height) {
-		this.screen = new Screen(width, height);
+	public Window(String title, int width, int height, float scale) {
+		this.screen = new Screen((int) (width/scale), (int) (height/scale));
 		setTitle(title);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		

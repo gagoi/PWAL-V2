@@ -1,7 +1,5 @@
 package fr.gagoi.pwal.v2.app.core;
 
-import java.lang.reflect.GenericArrayType;
-
 import fr.gagoi.pwal.v2.app.graphics.Window;
 import fr.gagoi.pwal.v2.app.utils.Logger;
 
@@ -12,10 +10,12 @@ public class Application {
 	private final int HEIGHT;
 	private final float SCALE;
 	
-	private final Logger window_logger = new Logger(System.getProperty("usr-dir"), "window.log");
-
+	private static final Logger window_logger = new Logger(System.getProperty("user.dir"), "window.log");
+	private static final Logger update_logger = new Logger(System.getProperty("user.dir"), "updater.log");
+	
 	private int fps = 120;
 	private int ups = 120;
+	
 
 	public Application(String name, int width, int height, float scale) {
 		this.NAME = name;
@@ -23,7 +23,7 @@ public class Application {
 		this.HEIGHT = height;
 		this.SCALE = scale;
 		
-		new Window(name, width, height);
+		new Window(name, width, height, scale);
 		
 		
 		System.out.println("App started");
@@ -36,29 +36,6 @@ public class Application {
 	public void render(){
 		
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	public void setFps(int fps){
 		this.fps = fps;
@@ -76,6 +53,9 @@ public class Application {
 		return this.fps;
 	}
 
+	public static Logger getUpdateLogger(){
+		return update_logger;
+	}
 	
 
 }
