@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.Calendar;
 
 public class Logger {
@@ -31,15 +32,17 @@ public class Logger {
 			}
 		
 		try {
-			out = new OutputStreamWriter(new FileOutputStream(logFile));
+			out = new OutputStreamWriter(new FileOutputStream(logFile), "UTF-8");
 		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
 	}
 	
 	public void log(String type, String message){
 		try {
-			out.write(cal.getTime() + "::<" + type.toLowerCase() + ">: " + message);
+			out.write(cal.getTime() + "::<" + type.toLowerCase() + ">: " + message + "\n");
 			out.flush();
 		} catch (IOException e) {
 			System.err.println("Impossible to write on log file, you should run in administrator...");

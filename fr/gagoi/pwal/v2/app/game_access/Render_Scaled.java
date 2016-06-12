@@ -1,6 +1,8 @@
 package fr.gagoi.pwal.v2.app.game_access;
 
+import java.awt.Graphics;
+
 public interface Render_Scaled {
 
-	abstract void render(float scale);
+	public abstract void render(Graphics g);
 }
