@@ -1,5 +1,6 @@
 package fr.gagoi.pwal.v2.app.graphics;
 
+import java.awt.BufferCapabilities;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -19,21 +20,22 @@ public class Screen extends Canvas {
 	private int[] pixels;
 
 	private int FPS;
-	
-	public Screen(int width, int height) {
+
+	public Screen(int width, int height, float scale) {
 		setSize(width, height);
-		img = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+		img = new BufferedImage((int) (width / scale), (int) (height / scale), BufferedImage.TYPE_INT_RGB);
 		pixels = ((DataBufferInt) img.getRaster().getDataBuffer()).getData();
 		
-		Application.getUpdater().updateAtFixedRate(new TimerTask() {	
+
+		Application.getUpdater().updateAtFixedRate(new TimerTask() {
 			@Override
 			public void run() {
 				clear(0);
-				render();
+				repaint();
 				FPS++;
 			}
-		}, 1000/120, 1000/120, "RENDER", "RenderAll");
-		
+		}, 1000 / Application.getFps(), 1000 / Application.getFps(), "RENDER", "RenderAll");
+
 		Application.getUpdater().updateAtFixedRate(new TimerTask() {
 			@Override
 			public void run() {
@@ -41,7 +43,7 @@ public class Screen extends Canvas {
 				FPS = 0;
 			}
 		}, 1000, 1000, "FPS_RESET", "Permet de compter les fps.");
-		
+
 	}
 
 	public void clear(int color) {
@@ -49,18 +51,19 @@ public class Screen extends Canvas {
 			pixels[i] = color;
 		}
 	}
-	
-	public void render(){
-		for (Iterator<Render_Scaled> renders = Application.getRenders().iterator(); renders.hasNext();) {
+
+	public void render(Graphics g) {
+		for (Iterator<Render_Scaled> renders = Application.getScaledRenders().iterator(); renders.hasNext();) {
 			Render_Scaled render = renders.next();
-			render.render(getGraphics());
-			
+			render.render(img.getGraphics());
+
 		}
+
+		g.drawImage(this.img, 0, 0, this.getWidth(), this.getHeight(), null);
 	}
 
 	@Override
 	public void paint(Graphics g) {
-		g.setColor(Color.RED);
-		g.fillRect(50, 50, 50, 500);
+		render(g);
 	}
 }
