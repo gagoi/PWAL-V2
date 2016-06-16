@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
+@SuppressWarnings("serial")
 public class GameCanvas extends Canvas {
 	
 	Screen screen;
@@ -26,19 +27,6 @@ public class GameCanvas extends Canvas {
 		screen.renderMap(x, y);
 		
 		screen.convertPixels(pixels);
-		
-		for (int x = 0; x < screen.getPixels().length; x++) {
-			for (int y = 0; y < screenGAME.pixels[x].length; y++) {
-				try {
-					pixels[x + y * width] = screenGAME.pixels[x][y];
-				} catch (Exception e) {}
-			}
-		}
-
-		debugWindow.setFPS(actualFPS); // On actualise les FPS dans la fen�tre
-		// de debug.
-		debugWindow.setUPS(actualUPS); // On actualise les UPS dans la fen�tre
-		// de debug.
 
 		Graphics g = bs.getDrawGraphics(); // On r�cup�re les graphics de notre
 		// canvas.

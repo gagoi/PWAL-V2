@@ -46,14 +46,7 @@ public class Screen {
 		
 	}
 
-	//
-	public void paint(Graphics g) {
-		BufferStrategy bs = getBufferStrategy();
-		if (bs == null) { 
-			createBufferStrategy(2);
-			return; 
-		}
-	}
+
 
 	public void convertPixels(int[] pixels2) {
 		for (int x = 0; x < pixels.length; x++) {
@@ -62,5 +55,13 @@ public class Screen {
 			}
 		}
 		
+	}
+	
+	public int getWidth() {
+		return this.width;
+	}
+	
+	public int getHeight(){
+		return this.height;
 	}
 }
