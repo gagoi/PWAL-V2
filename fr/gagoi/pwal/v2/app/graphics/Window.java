@@ -14,14 +14,16 @@ import fr.gagoi.pwal.v2.app.game_access.Render;
 public class Window extends JFrame {
 
 	private Screen screen;
+	private GameCanvas canvas;
 	private int FPS;
 
 	public Window(String title, int width, int height, float scale) {
 		this.screen = new Screen(width, height, scale);
+		this.canvas = new GameCanvas(screen);
 		setTitle(title);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		add(screen);
+		add(canvas);
 		pack();
 
 		setVisible(true);
@@ -31,7 +33,6 @@ public class Window extends JFrame {
 			public void run() {
 				screen.clear(0);
 				screen.render();
-				repaint();
 				FPS++;
 			}
 		}, 1000 / Application.getFps(), 1000 / Application.getFps(), "RENDER", "RenderAll");
@@ -48,7 +49,6 @@ public class Window extends JFrame {
 
 	@Override
 	public void paint(Graphics g) {
-		super.paint(g);
 		for (Iterator<Render> renders = Application.getRenders().iterator(); renders.hasNext();) {
 			Render render = renders.next();
 			render.render(g, getWidth(), getHeight());

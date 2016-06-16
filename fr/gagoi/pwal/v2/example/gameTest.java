@@ -40,7 +40,7 @@ public class gameTest {
 				v++;
 				
 			}
-		}, 0, 100, "EEEEE", "fEEFEFFEEF");
+		}, 0, 10, "EEEEE", "fEEFEFFEEF");
 		app.addRender(lbl);
 	
 	}
