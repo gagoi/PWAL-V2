@@ -9,7 +9,6 @@ import javax.swing.JFrame;
 
 import fr.gagoi.pwal.v2.app.core.Application;
 import fr.gagoi.pwal.v2.app.game_access.Render;
-import javafx.scene.layout.Background;
 
 @SuppressWarnings("serial")
 public class Window extends JFrame {

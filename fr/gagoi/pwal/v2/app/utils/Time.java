@@ -19,11 +19,11 @@ public class Time {
 	}
 
 	public void update() {
-		if (System.currentTimeMillis() >= this.msUPS + app.getUps()) {
+		if (System.currentTimeMillis() >= this.msUPS + Application.getUps()) {
 			app.updateAll();
 			upsCounter++;
 		}
-		if (System.currentTimeMillis() >= this.msFPS + app.getFps()) {
+		if (System.currentTimeMillis() >= this.msFPS + Application.getFps()) {
 			app.updateAll();
 			fpsCounter++;
 		}

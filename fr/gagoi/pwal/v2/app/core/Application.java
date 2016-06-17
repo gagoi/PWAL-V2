@@ -32,7 +32,7 @@ public class Application {
 		this.HEIGHT = height;
 		this.SCALE = scale;
 		
-		new Window(name, width, height, scale);
+		new Window(this.NAME, this.WIDTH, this.HEIGHT, this.SCALE);
 		System.out.println("App started");
 	}
 	
