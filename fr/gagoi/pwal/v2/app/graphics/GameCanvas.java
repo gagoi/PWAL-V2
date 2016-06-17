@@ -5,15 +5,18 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
+import java.awt.image.BufferedImage;
 
 @SuppressWarnings("serial")
 public class GameCanvas extends Canvas {
 	
 	Screen screen;
 	int[] pixels;
+	private BufferedImage img;
 	
 	public GameCanvas(Screen screen) {
 		this.screen = screen;
+		this.img = new BufferedImage(screen., arg1, arg2);
 	}
 
 	public synchronized void visualUpdate() {
