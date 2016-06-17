@@ -13,7 +13,7 @@ public class gameTest {
 
 	private static int r, v;
 	public static void main(String args[]) {
-		Application app = new Application("Test", 700, 400, 2.0f);
+		Application app = new Application("Test", 1920, 1080, 4.0f);
 		PWAL_Label lbl = new PWAL_Label("Bonjour !", 0.1f, 0.1f, Color.RED);
 
 		app.addScaledRender(new Render_Scaled() {
@@ -23,14 +23,14 @@ public class gameTest {
 			}
 		});
 		
-//		app.addRender(new Render() {
-//			
-//			@Override
-//			public void render(Graphics g, int width, int height) {
-//				g.setColor(Color.BLUE);
-//				g.fillRect(r, v, 50, 50);
-//			}
-//		});
+		app.addRender(new Render() {
+			
+			@Override
+			public void render(Graphics g, int width, int height) {
+				g.setColor(Color.BLUE);
+				g.fillRect(r, v, 50, 50);
+			}
+		});
 		
 		Application.getUpdater().updateAtFixedRate(new TimerTask() {
 			
