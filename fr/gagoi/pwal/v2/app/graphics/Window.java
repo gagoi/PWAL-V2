@@ -16,12 +16,11 @@ public class Window extends JFrame {
 
 	private Screen screen;
 	private int FPS;
-	private BufferedImage bf, oldBf;
+	private BufferedImage bf;
 
 	public Window(String title, int width, int height, float scale) {
 		this.screen = new Screen(width, height, scale);
 		this.bf = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
-		this.oldBf = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
 		setTitle(title);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -55,10 +54,7 @@ public class Window extends JFrame {
 			Render render = renders.next();
 			render.render(bf.getGraphics(), getWidth(), getHeight());
 		}
-//		if (!oldBf.equals(bf)) {
 			repaint();
-//			oldBf = bf;
-//		}
 	}
 
 	@Override

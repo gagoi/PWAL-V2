@@ -5,7 +5,6 @@ import java.awt.Font;
 import java.awt.Graphics;
 
 import fr.gagoi.pwal.v2.app.core.Application;
-import fr.gagoi.pwal.v2.app.game_access.Render;
 import fr.gagoi.pwal.v2.app.game_access.Render_Scaled;
 
 public class PWAL_S_Label implements Render_Scaled {
