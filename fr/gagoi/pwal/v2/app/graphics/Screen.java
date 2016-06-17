@@ -1,6 +1,7 @@
 package fr.gagoi.pwal.v2.app.graphics;
 
 import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.util.Iterator;
 
@@ -15,13 +16,14 @@ public class Screen {
 	public Screen(int width, int height, float scale) {
 		this.width = (int) (width / scale);
 		this.height = (int) (height / scale);
-		img = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_RGB);
+		img = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_ARGB);
 
 	}
-
-	public void clear(int color) {
-		img.getGraphics().setColor(new Color(color));
-		img.getGraphics().fillRect(0, 0, getWidth(), getHeight());
+	
+	public void clear(Color color) {
+		Graphics g = img.getGraphics();
+		g.setColor(color);
+		g.fillRect(0, 0, getWidth(), getHeight());
 	}
 
 	public void render() {

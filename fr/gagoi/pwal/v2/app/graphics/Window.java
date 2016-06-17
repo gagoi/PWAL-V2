@@ -1,5 +1,6 @@
 package fr.gagoi.pwal.v2.app.graphics;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.util.Iterator;
@@ -15,18 +16,19 @@ public class Window extends JFrame {
 
 	private Screen screen;
 	private int FPS;
-	private BufferedImage bf;
+	private BufferedImage bf, oldBf;
 
 	public Window(String title, int width, int height, float scale) {
 		this.screen = new Screen(width, height, scale);
 		this.bf = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+		this.oldBf = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
 		setTitle(title);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		setSize(width, height);
 
 		setVisible(true);
-		
+
 		Application.getUpdater().updateAtFixedRate(new TimerTask() {
 			@Override
 			public void run() {
@@ -42,18 +44,21 @@ public class Window extends JFrame {
 				FPS = 0;
 			}
 		}, 1000, 1000, "FPS_RESET", "Permet de compter les fps.");
-		
+
 	}
-	
-	public void render(){
-		screen.clear(0);
+
+	public void render() {
+		screen.clear(Color.BLACK);
 		screen.render();
 		bf.getGraphics().drawImage(screen.getImg(), 0, 0, getWidth(), getHeight(), null);
 		for (Iterator<Render> renders = Application.getRenders().iterator(); renders.hasNext();) {
 			Render render = renders.next();
 			render.render(bf.getGraphics(), getWidth(), getHeight());
 		}
-		repaint();
+//		if (!oldBf.equals(bf)) {
+			repaint();
+//			oldBf = bf;
+//		}
 	}
 
 	@Override
