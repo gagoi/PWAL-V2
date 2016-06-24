@@ -15,6 +15,5 @@ public class gameTest {
 		PWAL_S_Label lbl2 = new PWAL_S_Label("Bonjour !", 200, 111, Color.GREEN);
 		app.addRender(lbl);
 		app.addScaledRender(lbl2);
-	
 	}
 }
